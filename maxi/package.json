@@ -1,0 +1,19 @@
+{
+  "name": "maxi",
+  "version": "0.0.1",
+  "description": "A Robot.",
+  "main": "index.js",
+  "dependencies": {
+    "o-ajax": "^0.0.8",
+    "o-hot": "^0.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node maxi"
+  },
+  "keywords": [
+    ""
+  ],
+  "author": "woo",
+  "license": "MIT"
+}
