@@ -21,13 +21,16 @@ maxi.create = function(name, token){
   rbt.connect = async function(){
     let me = this;
     var o = await ajax.post(`${that.root}/connect.do`, `name=${hot.encoder.url(name)}&token=${hot.encoder.url(token)}`);
-    console.log(o.text);
+    if(o.error) return "";
     try{
       let ret = JSON.parse(o.text);
       if(ret && ret.result){
         session.id = ret.sid;
         await this.session.save();
         return ret.sid;
+      }
+      else {
+        console.log("Connect: " + o.text);
       }
     }
     catch(e){
@@ -64,6 +67,7 @@ maxi.create = function(name, token){
     bd.push("content=" + hot.encoder.url(content));
     
     let o = await ajax.post(`${that.root}/dbases/save.do`, bd.join("&")); 
+    if(o.error) return "";
     try{
       let ret = JSON.parse(o.text);
       if(ret && ret.result){

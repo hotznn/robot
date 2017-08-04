@@ -2,6 +2,7 @@ const maxi = require('./maxi');
 const hot = maxi.hot;
 const ajax = maxi.ajax;
 var main = {};
+
 main.load = async function(){
   var rbt = maxi.create("maxi", "2250839142617566488522565944363424735718");
   await rbt.session.load();
@@ -12,10 +13,20 @@ main.load = async function(){
   rbt.database = "log";
   await rbt.save('start', hot.now());
   
-  var o = await ajax.post('https://omuen.com/woo/bin/ajax.do','');
-  rbt.database = "cache";
-  await rbt.save('omuen', o.text);
-  console.log(o.text);
+  global.setInterval(async()=>{
+    var item = await rbt.mission.load("cmd");
+    if(item.rowid.length>0){
+      console.log(`Command: ${o.data}`);
+    }
+  }, 5e3);
+  
+  global.setInterval(async()=>{
+    var ok = await rbt.heartbeat();
+    if(!ok){
+      var sid = await rbt.connect();
+      console.log(`Reconnect: ${sid}`);
+    }
+  }, 60e3);
 };
 
 main.load();
