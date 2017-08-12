@@ -3,7 +3,7 @@ const ajax = require('o-ajax');
 const path = require('path');
 const maxi = {};
 
-maxi.host = "www.bimwook.com";
+maxi.host = "www.bimwook.com:11180";
 maxi.root = `https://${maxi.host}/woo/bin/center`;
 maxi.name = "maxi";
 maxi.token = "2250839142617566488522565944363424735718";
